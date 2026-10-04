@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolua</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .app {
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .logo span {
+            color: #22c55e;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 40px;
+            font-size: 17px;
+        }
+
+        .card {
+            background: #1e293b;
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: #cbd5e1;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: #22c55e;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #16a34a;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <div class="logo">
+            Evol<span>ua</span>
+        </div>
+
+        <div class="subtitle">
+            Sua jornada começa aqui.
+        </div>
+
+        <div class="card">
+
+            <h1>Bem-vindo ao Evolua</h1>
+
+            <p>
+                Uma plataforma criada para ajudar você
+                a evoluir, acompanhar seu progresso
+                e alcançar seus objetivos.
+            </p>
+
+            <button onclick="começar()">
+                Começar
+            </button>
+
+        </div>
+
+    </div>
+
+    <script>
+        function começar() {
+            alert("Bem-vindo ao Evolua! 🚀");
+        }
+    </script>
+
+</body>
+</html>
