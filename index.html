@@ -108,23 +108,29 @@
 
         </div> <script>
 function começar() {
-  setTimeout(function() {
+  let tentativas = 0;
+  
+  function verificar() {
+    tentativas++;
     const sys = window.dadosSistema;
-    if (!sys) {
-      alert("🔄 Ainda carregando... Espera 2 segundos e tenta!");
-      return;
+    
+    if (sys && sys.organismo) {
+      alert(
+        "🚀 SISTEMA EVOLUA INICIADO!\n\n" +
+        sys.organismo.getStatus() + "\n" +
+        sys.mundo.getEstado() + "\n\n" +
+        "📜 Princípios:\n" + sys.constituicao.getPrincipios().join("\n")
+      );
+    } else if (tentativas < 30) {
+      setTimeout(verificar, 300);
+    } else {
+      alert("❌ Não encontrou. Recarrega e tenta!");
     }
-    alert(
-      "🚀 SISTEMA EVOLUA INICIADO!\n\n" +
-      sys.organismo.getStatus() + "\n" +
-      sys.mundo.getEstado() + "\n\n" +
-      "📜 Princípios:\n" + sys.constituicao.getPrincipios().join("\n")
-    );
-  }, 1500);
+  }
+  
+  verificar();
 }
             
-  }, 800);
-}
             
         </script>
         
@@ -180,10 +186,12 @@ function começar() {
   console.log(organismo.getStatus()); simulacao.executar(5);
 console.log(organismo.getStatus());
 
-window.dadosSistema = { 
-  organismo: organismo, 
-  mundo: mundo, 
-  constituicao: constituicao};
+window.dadosSistema = {
+  get organismo() { return organismo; },
+  get mundo() { return mundo; },
+  get constituicao() { return constituicao; }
+};
+    
 </script>
 </body>
 </html>
