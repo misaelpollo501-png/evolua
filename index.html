@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evolua</title>
+
+    <title>EVOLUA — S.T.A.R.K.</title>
 
     <style>
         * {
@@ -14,25 +16,26 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: #0f172a;
-            color: white;
+            background: #07111f;
+            color: #fff;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
         }
 
         .app {
             width: 100%;
-            max-width: 420px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .header {
             text-align: center;
+            margin-bottom: 25px;
         }
 
         .logo {
             font-size: 48px;
             font-weight: bold;
-            margin-bottom: 10px;
         }
 
         .logo span {
@@ -41,35 +44,83 @@
 
         .subtitle {
             color: #94a3b8;
-            margin-bottom: 40px;
-            font-size: 17px;
+            margin-top: 8px;
         }
 
-        .card {
-            background: #1e293b;
-            padding: 30px 20px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        h1 {
+        .status-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
             margin-bottom: 15px;
         }
 
-        .card p {
-            color: #cbd5e1;
-            line-height: 1.5;
-            margin-bottom: 25px;
+        .status-item {
+            background: #111d2e;
+            border: 1px solid #1e334d;
+            border-radius: 12px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .status-item small {
+            display: block;
+            color: #94a3b8;
+            margin-bottom: 5px;
+        }
+
+        .status-item strong {
+            font-size: 18px;
+        }
+
+        .card {
+            background: #0f1b2d;
+            border: 1px solid #1e334d;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .metric {
+            background: #0a1524;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid #1b3048;
+        }
+
+        .metric-name {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .metric-value {
+            font-size: 22px;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
         }
 
         button {
-            width: 100%;
-            padding: 15px;
+            padding: 14px;
             border: none;
             border-radius: 12px;
             background: #22c55e;
             color: white;
-            font-size: 17px;
+            font-size: 15px;
             font-weight: bold;
             cursor: pointer;
         }
@@ -77,157 +128,2519 @@
         button:hover {
             background: #16a34a;
         }
+
+        button.secondary {
+            background: #334155;
+        }
+
+        button.secondary:hover {
+            background: #475569;
+        }
+
+        button.danger {
+            background: #991b1b;
+        }
+
+        #eventLog {
+            background: #050b13;
+            border-radius: 12px;
+            padding: 15px;
+            height: 220px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .event {
+            border-bottom: 1px solid #172235;
+            padding: 4px 0;
+        }
+
+        .principle {
+            padding: 8px 0;
+            border-bottom: 1px solid #1e334d;
+            color: #cbd5e1;
+        }
+
+        .architecture {
+            font-family: monospace;
+            white-space: pre-wrap;
+            background: #050b13;
+            padding: 15px;
+            border-radius: 12px;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 600px) {
+            .status-bar,
+            .grid,
+            .buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                font-size: 38px;
+            }
+        }
     </style>
 </head>
 
+
 <body>
 
-    <div class="app">
+<div class="app">
+
+    <!-- =========================================
+         CABEÇALHO
+    ========================================== -->
+
+    <div class="header">
 
         <div class="logo">
             Evol<span>ua</span>
         </div>
 
         <div class="subtitle">
-            Sua jornada começa aqui.
+            S.T.A.R.K. — Sistema Organísmico Adaptativo
         </div>
-
-        <div class="card">
-
-            <h1>Bem-vindo ao Evolua</h1>
-
-            <p>
-                Uma plataforma criada para ajudar você
-                a evoluir, acompanhar seu progresso
-                e alcançar seus objetivos.
-            </p>
-
-            <button onclick="começar()">
-                
-            </button>
-
-        </div> <script>
-function começar() {
-  let tentativas = 0;
-  
-  function verificar() {
-    tentativas++;
-    const sys = window.dadosSistema;
-    
-    if (sys && sys.organismo) {
-      alert(
-        "🚀 SISTEMA EVOLUA INICIADO!\n\n" +
-        sys.organismo.getStatus() + "\n" +
-        sys.mundo.getEstado() + "\n\n" +
-        "📜 Princípios:\n" + sys.constituicao.getPrincipios().join("\n")
-      );
-    } else if (tentativas < 30) {
-      setTimeout(verificar, 300);
-    } else {
-      alert("❌ Não encontrou. Recarrega e tenta!");
-    }
-  }
-  
-  verificar();
-}
-            
-            
-        </script>
-        
 
     </div>
 
-    
-  
-</script>
-    
-            
-    
+
+    <!-- =========================================
+         STATUS PRINCIPAL
+    ========================================== -->
+
+    <div class="status-bar">
+
+        <div class="status-item">
+            <small>Organismo</small>
+            <strong id="organismStatus">OFFLINE</strong>
+        </div>
+
+        <div class="status-item">
+            <small>Ciclo</small>
+            <strong id="cycle">0</strong>
+        </div>
+
+        <div class="status-item">
+            <small>Firebase</small>
+            <strong id="firebaseStatus">OFFLINE</strong>
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         ORGANISMO
+    ========================================== -->
+
+    <div class="card">
+
+        <h2>🧬 S.T.A.R.K.</h2>
+
+        <div class="grid">
+
+            <div class="metric">
+                <div class="metric-name">Energia</div>
+                <div class="metric-value" id="energy">100</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-name">Saúde</div>
+                <div class="metric-value" id="health">100</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-name">Curiosidade</div>
+                <div class="metric-value" id="curiosity">50</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-name">Aprendizagem</div>
+                <div class="metric-value" id="learning">0</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-name">Ameaça</div>
+                <div class="metric-value" id="threat">0</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-name">Dívida evolutiva</div>
+                <div class="metric-value" id="evolutionDebt">0</div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         SICA
+    ========================================== -->
+
+    <div class="card">
+
+        <h2>🧠 SICA</h2>
+
+        <div class="grid">
+
+            <div class="metric">
+                <div class="metric-name">Percepção</div>
+                <div class="metric-value" id="perception">0</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-name">Atenção</div>
+                <div class="metric-value" id="attention">0</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-name">Predição</div>
+                <div class="metric-value" id="prediction">0</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-name">Raciocínio</div>
+                <div class="metric-value" id="reasoning">0</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-name">Defesa</div>
+                <div class="metric-value" id="defense">0</div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-name">Homeostase</div>
+                <div class="metric-value" id="homeostasis">100</div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         MUNDO / UNIVERSO
+    ========================================== -->
+
+    <div class="card">
+
+        <h2>🌌 EVOLUA / UNIVERSO</h2>
+
+        <div class="grid">
+
+            <div class="metric">
+                <div class="metric-name">Mundo</div>
+                <div class="metric-value" id="worldState">
+                    Inicializando
+                </div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-name">Entidades</div>
+                <div class="metric-value" id="entities">
+                    0
+                </div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-name">Eventos</div>
+                <div class="metric-value" id="events">
+                    0
+                </div>
+            </div>
+
+            <div class="metric">
+                <div class="metric-name">Memórias</div>
+                <div class="metric-value" id="memories">
+                    0
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         CONTROLE
+    ========================================== -->
+
+    <div class="card">
+
+        <h2>⚙️ Controle</h2>
+
+        <div class="buttons">
+
+            <button id="startButton">
+                🚀 Iniciar S.T.A.R.K.
+            </button>
+
+            <button id="cycleButton">
+                🔄 Executar ciclo
+            </button>
+
+            <button id="tenCyclesButton">
+                🧬 Executar 10 ciclos
+            </button>
+
+            <button class="secondary" id="saveButton">
+                💾 Salvar estado
+            </button>
+
+            <button class="secondary" id="inspectButton">
+                🔍 Inspecionar organismo
+            </button>
+
+            <button class="danger" id="resetButton">
+                ♻️ Reiniciar simulação
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         CONSTITUIÇÃO
+    ========================================== -->
+
+    <div class="card">
+
+        <h2>📜 Constituição</h2>
+
+        <div id="principles"></div>
+
+    </div>
+
+
+    <!-- =========================================
+         ARQUITETURA
+    ========================================== -->
+
+    <div class="card">
+
+        <h2>🏗️ Arquitetura</h2>
+
+        <div class="architecture">
+CONSTITUIÇÃO / ROOT OF TRUST
+        │
+        ↓
+CONTROL PLANE
+        │
+        ↓
+EVOLUTION GENOME
+        │
+        ↓
+      EVOLUA
+ corpo / ambiente
+        │
+        ├──────────────┐
+        ↓              ↓
+    UNIVERSO        MUNDO
+        │              │
+        └──────┬───────┘
+               ↓
+           S.T.A.R.K.
+            ORGANISMO
+               │
+               ↓
+             SICA
+               │
+ ┌─────────────┼─────────────┐
+ ↓             ↓             ↓
+Percepção   Cognição      Memória
+ ↓             ↓             ↓
+Atenção     Predição     Aprendizagem
+ ↓             ↓             ↓
+Defesa      Decisão       Evolução
+ └─────────────┼─────────────┘
+               ↓
+         Ação / Adaptação
+               ↓
+        META-S.T.A.R.K.
+               │
+               ↓
+        Reflexão sobre si
+               │
+               ↓
+          EVOLUÇÃO
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         EVENTOS
+    ========================================== -->
+
+    <div class="card">
+
+        <h2>📡 Eventos do organismo</h2>
+
+        <div id="eventLog"></div>
+
+    </div>
+
+
+</div>
+
+
+<!-- =========================================================
+     SISTEMA PRINCIPAL
+========================================================= -->
+
 <script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyAPgSMrTru3Qwnzs1t4CWjofsvZxgcmyf4",
-    authDomain: "evolua-1513c.firebaseapp.com",
-    projectId: "evolua-1513c",
-    storageBucket: "evolua-1513c.firebasestorage.app",
-    messagingSenderId: "260699332937",
-    appId: "1:260699332937:web:e1b1cfdfe660fa82257a98"
-  };
+    /* =====================================================
+       FIREBASE
+    ===================================================== */
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-</script> 
-<script type="module">
-  import { EvoluaOrganism } from "./organismo.js";
-  import { EvoluaUniverse } from "./universo.js";
-  import { EvoluaWorld } from "./mundo.js";
-  import { MemorySystem } from "./memory.js";
-  import { SimulationEngine } from "./simulacao.js";
-  import { ConstitutionEngine } from "./constituicao.js";
+    import {
+        initializeApp
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
-  const organismo = new EvoluaOrganism("Evolua");
-  const universo = new EvoluaUniverse();
-  const mundo = new EvoluaWorld();
-  const memoria = new MemorySystem();
-  const simulacao = new SimulationEngine(mundo, organismo);
-  const constituicao = new ConstitutionEngine();
+    import {
+        getDatabase,
+        ref,
+        set
+    } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
-  console.log("🚀 SISTEMA EVOLUA INICIADO!");
-  console.log(organismo.getStatus());
-  console.log(mundo.getEstado());
-  console.log("📜 Princípios:", constituicao.getPrincipios());
 
-  simulacao.executar(5); 
-  console.log(organismo.getStatus()); simulacao.executar(5);
-console.log(organismo.getStatus());
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyAPgSMrTr3Uqwnzs1t4CWsvZxgcmyf4",
+
+        authDomain: "evolua-1513c.firebaseapp.com",
+
+        projectId: "evolua-1513c",
+
+        storageBucket: "evolua-1513c.firebasestorage.app",
+
+        messagingSenderId: "260699332937",
+
+        appId: "1:260699332937:web:e1b1cfdfe660fa82257a98",
+
+        databaseURL:
+            "https://evolua-1513c-default-rtdb.firebaseio.com"
+
+    };
+
+
+    let firebaseApp = null;
+
+    let database = null;
+
+    let firebaseOnline = false;
+
+
+    try {
+
+        firebaseApp =
+            initializeApp(firebaseConfig);
+
+        database =
+            getDatabase(firebaseApp);
+
+        firebaseOnline = true;
+
+        document.getElementById(
+            "firebaseStatus"
+        ).textContent = "ONLINE";
+
+    }
+
+    catch (erro) {
+
+        console.warn(
+            "Firebase indisponível:",
+            erro
+        );
+
+        document.getElementById(
+            "firebaseStatus"
+        ).textContent = "LOCAL";
+
+    }
+
+
+
+    /* =====================================================
+       MÓDULOS ORIGINAIS DO EVOLUA
+    ===================================================== */
+
+    import {
+        EvoluaOrganism
+    } from "./organismo.js";
+
+    import {
+        EvoluaUniverse
+    } from "./universo.js";
+
+    import {
+        EvoluaWorld
+    } from "./mundo.js";
+
+    import {
+        MemorySystem
+    } from "./memory.js";
+
+    import {
+        SimulationEngine
+    } from "./simulacao.js";
+
+    import {
+        ConstitutionEngine
+    } from "./constituicao.js";
+
+
+
+    /* =====================================================
+       INSTÂNCIAS PRINCIPAIS
+    ===================================================== */
+
+    const organismo =
+        new EvoluaOrganism("S.T.A.R.K.");
+
+    const universo =
+        new EvoluaUniverse();
+
+    const mundo =
+        new EvoluaWorld();
+
+    const memoria =
+        new MemorySystem();
+
+    const simulacao =
+        new SimulationEngine(
+            mundo,
+            organismo
+        );
+
+    const constituicao =
+        new ConstitutionEngine();
+
+
+
+    /* =====================================================
+       ESTADO DO S.T.A.R.K.
+    ===================================================== */
+
+    const stark = {
+
+        identity: {
+
+            name: "S.T.A.R.K.",
+
+            role: "Organismo central do Evolua",
+
+            version: "1.0",
+
+            identityHash:
+                "STARK-EVOLUA-001"
+
+        },
+
+
+        purpose: {
+
+            primary:
+                "Perceber, aprender, adaptar e evoluir",
+
+            constraints:
+                "Constituição do Evolua"
+
+        },
+
+
+        state: {
+
+            cycle: 0,
+
+            age: 0,
+
+            energy: 100,
+
+            health: 100,
+
+            curiosity: 50,
+
+            learning: 0,
+
+            adaptation: 0,
+
+            threat: 0,
+
+            defense: 0,
+
+            homeostasis: 100,
+
+            evolutionDebt: 0,
+
+            fitness: 0
+
+        },
+
+
+        perception: {
+
+            environment: null,
+
+            self: null,
+
+            threats: [],
+
+            opportunities: []
+
+        },
+
+
+        cognition: {
+
+            attention: 0,
+
+            prediction: 0,
+
+            reasoning: 0,
+
+            confidence: 0
+
+        },
+
+
+        memory: {
+
+            shortTerm: [],
+
+            longTerm: [],
+
+            episodic: [],
+
+            semantic: [],
+
+            procedural: [],
+
+            failures: []
+
+        },
+
+
+        learning: {
+
+            discoveries: [],
+
+            hypotheses: [],
+
+            experiments: [],
+
+            lessons: []
+
+        },
+
+
+        evolution: {
+
+            genome: {
+
+                curiosity:
+
+                    0.50,
+
+                adaptation:
+
+                    0.50,
+
+                learning:
+
+                    0.50,
+
+                resilience:
+
+                    0.50,
+
+                exploration:
+
+                    0.50,
+
+                conservation:
+
+                    0.50
+
+            },
+
+
+            topology: {
+
+                version: 1,
+
+                mutations: 0,
+
+                structuralChanges: 0
+
+            },
+
+
+            plasticity: 0.5,
+
+            fitnessVector: {
+
+                survival: 0,
+
+                learning: 0,
+
+                adaptation: 0,
+
+                stability: 0,
+
+                efficiency: 0
+
+            }
+
+        },
+
+
+        selfModel: {
+
+            identity:
+                "S.T.A.R.K.",
+
+            architecture:
+                "SICA",
+
+            currentState:
+                "Inicializando",
+
+            capabilities: [],
+
+            limitations: [],
+
+            goals: [],
+
+            history: []
+
+        },
+
+
+        realityModel: {
+
+            identity:
+                "EVOLUA",
+
+            currentState:
+                "Inicializando",
+
+            actualState: {},
+
+            entities: [],
+
+            relations: [],
+
+            events: [],
+
+            intentions: [],
+
+            evidence: [],
+
+            hypotheses: [],
+
+            knowledge: [],
+
+            resources: [],
+
+            constraints: [],
+
+            dependencies: [],
+
+            possibilities: [],
+
+            transformations: [],
+
+            results: [],
+
+            uncertainties: [],
+
+            openLoops: [],
+
+            permissions: [],
+
+            history: []
+
+        },
+
+
+        selfCausalModel: {
+
+            causes: [],
+
+            effects: [],
+
+            actions: [],
+
+            outcomes: [],
+
+            confidence: 0
+
+        },
+
+
+        internalEcology: {
+
+            energy: 100,
+
+            resources: 100,
+
+            cognitiveLoad: 0,
+
+            memoryLoad: 0,
+
+            repairNeed: 0,
+
+            metabolicEfficiency: 1
+
+        },
+
+
+        nicheConstruction: {
+
+            modifications: [],
+
+            influence: 0
+
+        },
+
+
+        failureGenome: {
+
+            failures: [],
+
+            patterns: [],
+
+            corrections: []
+
+        },
+
+
+        architecturalGenealogy: {
+
+            generations: [
+
+                {
+
+                    generation: 0,
+
+                    architecture: "SICA",
+
+                    changes: []
+
+                }
+
+            ]
+
+        },
+
+
+        meta: {
+
+            reflections: 0,
+
+            selfAssessments: 0,
+
+            modelUpdates: 0
+
+        },
+
+
+        aegis: {
+
+            active: true,
+
+            containment: false,
+
+            violations: 0,
+
+            lastCheck: null
+
+        }
+
+    };
+
+
+
+    /* =====================================================
+       REALITY MODEL
+    ===================================================== */
+
+    stark.realityModel.actualState = {
+
+        world: "online",
+
+        organism: "online",
+
+        universe: "online",
+
+        simulation: "ready"
+
+    };
+
+
+
+    /* =====================================================
+       SICA
+    ===================================================== */
+
+    const SICA = {
+
+        perception: true,
+
+        cognition: true,
+
+        memory: true,
+
+        attention: true,
+
+        prediction: true,
+
+        defense: true,
+
+        immuneSystem: true,
+
+        repair: true,
+
+        homeostasis: true,
+
+        learning: true,
+
+        proprioception: true,
+
+        autoprotection: true
+
+    };
+
+
+
+    /* =====================================================
+       CONSTITUIÇÃO
+    ===================================================== */
+
+    const defaultPrinciples = [
+
+        "Preservar a integridade do organismo.",
+
+        "Valor antes da monetização.",
+
+        "Transparência.",
+
+        "Não manipulação.",
+
+        "Evolução sustentável.",
+
+        "Aprender com falhas.",
+
+        "Não confundir hipótese com realidade.",
+
+        "Testar antes de alterar o sistema.",
+
+        "Preservar histórico.",
+
+        "Priorizar estabilidade antes de mutação."
+
+    ];
+
+
+    let principles = defaultPrinciples;
+
+
+    try {
+
+        const p =
+            constituicao.getPrincipios();
+
+        if (
+            Array.isArray(p) &&
+            p.length > 0
+        ) {
+
+            principles = p;
+
+        }
+
+    }
+
+    catch (erro) {
+
+        console.warn(
+            "Constituição externa indisponível."
+        );
+
+    }
+
+/* =====================================================
+   RENDER CONSTITUIÇÃO
+===================================================== */
+
+const principlesElement =
+    document.getElementById("principles");
+
+principles.forEach(
+    principle => {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "principle";
+
+        div.textContent =
+            "• " + principle;
+
+        principlesElement.appendChild(div);
+
+    }
+);
+
+/* =====================================================
+   EVENT LOG
+===================================================== */
+
+function logEvent(message) {
+
+    const log =
+        document.getElementById("eventLog");
+
+    const event =
+        document.createElement("div");
+
+    event.className = "event";
+
+    event.textContent =
+        `[CICLO ${stark.state.cycle}] ${message}`;
+
+    log.prepend(event);
+
+    stark.realityModel.events.push({
+
+        cycle:
+            stark.state.cycle,
+
+        message:
+            message,
+
+        timestamp:
+            Date.now()
+
+    });
+
+} 
+
+/* =====================================================
+   PERCEPÇÃO
+===================================================== */
+
+function perceive() {
+
+    let worldState = null;
+
+    try {
+
+        worldState =
+            mundo.getEstado();
+
+    } catch {
+
+        worldState =
+            "Estado desconhecido";
+
+    }
+
+    stark.perception.environment =
+        worldState;
+
+    stark.perception.self = {
+
+        energy:
+            stark.state.energy,
+
+        health:
+            stark.state.health,
+
+        learning:
+            stark.state.learning
+
+    };
+
+    stark.perception.threats = [];
+
+    if (stark.state.energy < 20) {
+
+        stark.perception.threats.push(
+            "Energia baixa"
+        );
+
+    }
+
+    if (stark.state.health < 50) {
+
+        stark.perception.threats.push(
+            "Integridade reduzida"
+        );
+
+    }
+
+    stark.perception.opportunities = [
+
+        "Aprender",
+
+        "Explorar",
+
+        "Experimentar",
+
+        "Otimizar"
+
+    ];
+
+    stark.realityModel.knowledge.push(
+        "Ambiente percebido no ciclo " +
+        stark.state.cycle
+    );
+
+    logEvent(
+        "Percepção ambiental concluída."
+    );
+
+}
+
+/* =====================================================
+   ATENÇÃO
+===================================================== */
+
+function attend() {
+
+    const threatLevel =
+        stark.perception.threats.length;
+
+    stark.cognition.attention =
+        Math.min(
+            100,
+            50 +
+            threatLevel * 20 +
+            stark.state.curiosity * 0.3
+        );
+
+    logEvent(
+        "Atenção direcionada para prioridades."
+    );
+
+}
+
+    /* =====================================================
+   PREDIÇÃO
+===================================================== */
+
+function predict() {
+
+    stark.cognition.prediction =
+        Math.min(
+            100,
+            40 +
+            stark.state.learning * 0.5 +
+            stark.state.adaptation * 0.5
+        );
+
+    stark.cognition.confidence =
+        stark.cognition.prediction / 100;
+
+    stark.selfCausalModel.confidence =
+        stark.cognition.confidence;
+
+    logEvent(
+        "Modelo preditivo atualizado."
+    );
+
+}
+
+    /* =====================================================
+   RACIOCÍNIO
+===================================================== */
+
+function reason() {
+
+    const complexity =
+        stark.perception.threats.length +
+        stark.perception.opportunities.length;
+
+    stark.cognition.reasoning =
+        Math.min(
+            100,
+            30 +
+            complexity * 8 +
+            stark.cognition.prediction * 0.4
+        );
+
+    stark.internalEcology.cognitiveLoad =
+        Math.min(
+            100,
+            complexity * 10
+        );
+
+    logEvent(
+        "Análise cognitiva executada."
+    );
+
+}
+
+    /* =====================================================
+   HOMEOSTASE
+===================================================== */
+
+function maintainHomeostasis() {
+
+    const energy =
+        stark.state.energy;
+
+    const health =
+        stark.state.health;
+
+    stark.state.homeostasis =
+        Math.max(
+            0,
+            100 -
+            Math.abs(50 - energy) * 0.5 -
+            Math.abs(50 - health) * 0.5
+        );
+
+    if (energy < 30) {
+
+        stark.state.energy =
+            Math.min(
+                100,
+                energy + 5
+            );
+
+        logEvent(
+            "Homeostase recuperou energia."
+        );
+
+    }
+
+    if (health < 50) {
+
+        repair();
+
+    }
+
+}
+
+/* =====================================================
+   DEFESA
+===================================================== */
+
+function defend() {
+
+    const threats =
+        stark.perception.threats.length;
+
+    stark.state.threat =
+        threats * 20;
+
+    stark.state.defense =
+        Math.min(
+            100,
+            30 +
+            stark.evolution.genome.resilience * 70
+        );
+
+    if (threats > 0) {
+
+        logEvent(
+            "Sistema defensivo detectou ameaça."
+        );
+
+    }
+
+}
+
+    /* =====================================================
+   REPARO
+===================================================== */
+
+function repair() {
+
+    stark.internalEcology.repairNeed += 1;
+
+    stark.state.health =
+        Math.min(
+            100,
+            stark.state.health + 3
+        );
+
+    stark.state.evolutionDebt =
+        Math.max(
+            0,
+            stark.state.evolutionDebt - 1
+        );
+
+    logEvent(
+        "Mecanismo de reparo executado."
+    );
+
+}
+
+    /* =====================================================
+   CURIOSIDADE
+===================================================== */
+
+function explore() {
+
+    const chance =
+        Math.random();
+
+    if (
+        chance <
+        stark.state.curiosity / 100
+    ) {
+
+        const experiment = {
+
+            cycle:
+                stark.state.cycle,
+
+            type:
+                "exploração",
+
+            result:
+                "nova informação potencial"
+
+        };
+
+        stark.learning.experiments.push(
+            experiment
+        );
+
+        stark.state.learning += 1;
+
+        stark.state.adaptation += 0.5;
+
+        logEvent(
+            "S.T.A.R.K. iniciou uma exploração."
+        );
+
+    }
+
+}
+
+    /* =====================================================
+   DECISÃO
+===================================================== */
+
+function decide() {
+
+    let decision = "observar";
+
+    if (
+        stark.state.threat > 0
+    ) {
+
+        decision = "defender";
+
+    }
+
+    else if (
+        stark.state.energy < 30
+    ) {
+
+        decision = "recuperar";
+
+    }
+
+    else if (
+        stark.state.curiosity > 60
+    ) {
+
+        decision = "explorar";
+
+    }
+
+    else {
+
+        decision = "aprender";
+
+    }
+
+    stark.selfCausalModel.actions.push(
+        decision
+    );
+
+    logEvent(
+        "Decisão: " + decision
+    );
+
+    return decision;
+
+}
+
+    /* =====================================================
+   AÇÃO
+===================================================== */
+
+function act(decision) {
+
+    switch (decision) {
+
+        case "defender":
+
+            stark.state.energy -= 2;
+
+            break;
+
+        case "recuperar":
+
+            stark.state.energy += 5;
+
+            break;
+
+        case "explorar":
+
+            explore();
+
+            stark.state.energy -= 1;
+
+            break;
+
+        case "aprender":
+
+            stark.state.learning += 1;
+
+            stark.state.energy -= 1;
+
+            break;
+
+        default:
+
+            break;
+
+    }
+
+    stark.state.energy =
+        Math.max(
+            0,
+            Math.min(
+                100,
+                stark.state.energy
+            )
+        );
+
+    logEvent(
+        "Ação executada."
+    );
+
+}
+
+    /* =====================================================
+   MEMÓRIA
+===================================================== */
+
+function remember(decision) {
+
+    const memory = {
+
+        cycle:
+            stark.state.cycle,
+
+        decision:
+            decision,
+
+        energy:
+            stark.state.energy,
+
+        health:
+            stark.state.health,
+
+        threat:
+            stark.state.threat,
+
+        learning:
+            stark.state.learning,
+
+        timestamp:
+            Date.now()
+
+    };
+
+    stark.memory.shortTerm.push(
+        memory
+    );
+
+    stark.memory.episodic.push(
+        memory
+    );
+
+    if (
+        stark.memory.shortTerm.length > 20
+    ) {
+
+        const old =
+            stark.memory.shortTerm.shift();
+
+        stark.memory.longTerm.push(
+            old
+        );
+
+    }
+
+    if (
+        decision === "defender"
+    ) {
+
+        stark.memory.failures.push(
+            memory
+        );
+
+    }
+
+    logEvent(
+        "Experiência armazenada na memória."
+    );
+
+}
+
+    /* =====================================================
+   APRENDIZAGEM
+===================================================== */
+
+function learn() {
+
+    stark.learning.lessons.push({
+
+        cycle:
+            stark.state.cycle,
+
+        lesson:
+            "O estado interno influencia decisões.",
+
+        confidence:
+            stark.cognition.confidence
+
+    });
+
+    stark.state.learning += 0.5;
+
+    stark.evolution.fitnessVector.learning += 1;
+
+    logEvent(
+        "Aprendizagem consolidada."
+    );
+
+}
+
+    /* =====================================================
+   EVOLUTION GENOME
+===================================================== */
+
+function evolve() {
+
+    const improvement =
+        stark.state.learning * 0.01;
+
+    stark.evolution.genome.adaptation =
+        Math.min(
+            1,
+            stark.evolution.genome.adaptation +
+            improvement
+        );
+
+    stark.evolution.genome.learning =
+        Math.min(
+            1,
+            stark.evolution.genome.learning +
+            improvement
+        );
+
+    stark.evolution.plasticity =
+        Math.min(
+            1,
+            stark.evolution.plasticity +
+            0.002
+        );
+
+    stark.evolution.topology.mutations += 1;
+
+    stark.evolution.fitnessVector.adaptation +=
+        improvement;
+
+    stark.state.fitness +=
+        improvement;
+
+    logEvent(
+        "Genome evolutivo atualizado."
+    );
+
+}
+
+    /* =====================================================
+   MEMORY METABOLISM
+===================================================== */
+
+function memoryMetabolism() {
+
+    const load =
+        stark.memory.shortTerm.length +
+        stark.memory.longTerm.length;
+
+    stark.internalEcology.memoryLoad =
+        Math.min(
+            100,
+            load
+        );
+
+    if (load > 50) {
+
+        stark.state.evolutionDebt += 0.2;
+
+        logEvent(
+            "Carga de memória aumentou a dívida evolutiva."
+        );
+
+    }
+
+}
+
+    /* =====================================================
+   FAILURE GENOME
+===================================================== */
+
+function analyzeFailures() {
+
+    if (
+        stark.memory.failures.length === 0
+    ) {
+
+        return;
+
+    }
+
+    const failures =
+        stark.memory.failures.length;
+
+    stark.failureGenome.patterns = [
+
+        "necessidade de adaptação",
+
+        "controle energético",
+
+        "gestão de risco"
+
+    ];
+
+    stark.failureGenome.corrections.push({
+
+        cycle:
+            stark.state.cycle,
+
+        correction:
+            "ajustar política de decisão",
+
+        basedOn:
+            failures
+
+    });
+
+    logEvent(
+        "Failure Genome analisou experiências adversas."
+    );
+
+}
+
+    /* =====================================================
+   INTERNAL ECOLOGY
+===================================================== */
+
+function updateInternalEcology() {
+
+    stark.internalEcology.energy =
+        stark.state.energy;
+
+    stark.internalEcology.resources =
+        stark.state.health;
+
+    stark.internalEcology.metabolicEfficiency =
+        0.5 +
+        stark.evolution.genome.conservation *
+        0.5;
+
+    stark.internalEcology.cognitiveLoad =
+        Math.min(
+            100,
+            stark.internalEcology.cognitiveLoad
+        );
+
+}
+    /* =====================================================
+   NICHE CONSTRUCTION
+===================================================== */
+
+function constructNiche() {
+
+    if (
+        stark.state.learning > 5
+    ) {
+
+        stark.nicheConstruction.influence +=
+            0.5;
+
+        stark.nicheConstruction.modifications.push({
+
+            cycle:
+                stark.state.cycle,
+
+            modification:
+                "ambiente interno reorganizado"
+
+        });
+
+        logEvent(
+            "Niche Construction registrada."
+        );
+
+    }
+
+}
+
+    /* =====================================================
+   META-S.T.A.R.K.
+===================================================== */
+
+function metaReflect() {
+
+    stark.meta.reflections += 1;
+
+    stark.meta.selfAssessments += 1;
+
+    stark.meta.modelUpdates += 1;
+
+    stark.selfModel.currentState =
+
+        stark.state.health > 70
+            ? "Estável"
+            : "Necessita adaptação";
+
+    stark.selfModel.capabilities = [
+
+        "Percepção",
+
+        "Aprendizagem",
+
+        "Adaptação",
+
+        "Simulação",
+
+        "Memória",
+
+        "Autoproteção"
+
+    ];
+
+    stark.selfModel.limitations = [
+
+        "Conhecimento incompleto",
+
+        "Modelo simplificado",
+
+        "Dependência do ambiente",
+
+        "Dependência dos módulos externos"
+
+    ];
+
+    stark.selfModel.history.push({
+
+        cycle:
+            stark.state.cycle,
+
+        state:
+            stark.selfModel.currentState
+
+    });
+
+    logEvent(
+        "META-S.T.A.R.K. executou autoavaliação."
+    );
+
+}
+
+   /* =====================================================
+   AEGIS / CONSTITUIÇÃO
+===================================================== */
+
+function aegisCheck() {
+
+    stark.aegis.lastCheck =
+        Date.now();
+
+    let violation = false;
+
+    if (
+        stark.state.health <= 0
+    ) {
+
+        violation = true;
+
+    }
+
+    if (
+        stark.state.energy <= 0
+    ) {
+
+        violation = true;
+
+    }
+
+    if (violation) {
+
+        stark.aegis.containment =
+            true;
+
+        stark.aegis.violations += 1;
+
+        logEvent(
+            "⚠️ AEGIS ativou contenção."
+        );
+
+    }
+
+    else {
+
+        stark.aegis.containment =
+            false;
+
+    }
+
+}
+
+   /* =====================================================
+   WORLD LAB / CONTRAFACTUAL
+===================================================== */
+
+function runCounterfactual() {
+
+    const hypothetical = {
+
+        energy:
+            Math.max(
+                0,
+                stark.state.energy - 10
+            ),
+
+        learning:
+            stark.state.learning + 2,
+
+        adaptation:
+            stark.state.adaptation + 1
+
+    };
+
+    stark.realityModel.possibilities.push(
+        hypothetical
+    );
+
+    logEvent(
+        "World Lab executou cenário contrafactual."
+    );
+
+}
+
+   /* =====================================================
+   SELF-CAUSAL MODEL
+===================================================== */
+
+function updateCausalModel(
+    decision
+) {
+
+    stark.selfCausalModel.causes.push({
+
+        cycle:
+            stark.state.cycle,
+
+        cause:
+            "estado interno + ambiente"
+
+    });
+
+    stark.selfCausalModel.effects.push({
+
+        cycle:
+            stark.state.cycle,
+
+        action:
+            decision,
+
+        resultingEnergy:
+            stark.state.energy
+
+    });
+
+    stark.selfCausalModel.outcomes.push({
+
+        cycle:
+            stark.state.cycle,
+
+        outcome:
+            "adaptação observada"
+
+    });
+
+    logEvent(
+        "Modelo causal atualizado."
+    );
+
+}
+
+   /* =====================================================
+   ARCHITECTURAL GENEALOGY
+===================================================== */
+
+function updateGenealogy() {
+
+    if (
+        stark.state.cycle % 10 !== 0
+    ) {
+
+        return;
+
+    }
+
+    const generation =
+        stark.architecturalGenealogy
+            .generations.length;
+
+    stark.architecturalGenealogy
+        .generations.push({
+
+            generation:
+                generation,
+
+            architecture:
+                "SICA",
+
+            changes: [
+
+                "adaptação incremental",
+
+                "melhoria de aprendizagem"
+
+            ]
+
+        });
+
+    stark.evolution.topology
+        .structuralChanges += 1;
+
+    logEvent(
+        "Nova geração arquitetural registrada."
+    );
+
+} 
+
+   /* =====================================================
+   CICLO PRINCIPAL
+===================================================== */
+
+async function executeCycle() {
+
+    if (
+        stark.aegis.containment
+    ) {
+
+        logEvent(
+            "Ciclo bloqueado pela contenção AEGIS."
+        );
+
+        return;
+
+    }
+
+    stark.state.cycle += 1;
+
+    stark.state.age += 1;
+
+    logEvent(
+        "========== CICLO INICIADO =========="
+    );
+
+    perceive();
+
+    attend();
+
+    predict();
+
+    reason();
+
+    defend();
+
+    maintainHomeostasis();
+
+    const decision =
+        decide();
+
+    act(decision);
+
+    remember(decision);
+
+    learn();
+
+    memoryMetabolism();
+
+    analyzeFailures();
+
+    updateInternalEcology();
+
+    constructNiche();
+
+    runCounterfactual();
+
+    updateCausalModel(
+        decision
+    );
+
+    evolve();
+
+    metaReflect();
+
+    aegisCheck();
+
+    updateGenealogy();
+
+
+    try {
+
+        simulacao.executar(1);
+
+    }
+
+    catch (erro) {
+
+        console.warn(
+            "Simulação externa:",
+            erro
+        );
+
+    }
+
+    render();
+
+    await saveState(false);
+
+    logEvent(
+        "========== CICLO CONCLUÍDO =========="
+    );
+
+} 
+
+   /* =====================================================
+   SNAPSHOT
+===================================================== */
+
+function createSnapshot() {
+
+    return {
+
+        identity:
+            stark.identity,
+
+        state:
+            stark.state,
+
+        perception:
+            stark.perception,
+
+        cognition:
+            stark.cognition,
+
+        memory:
+            stark.memory,
+
+        learning:
+            stark.learning,
+
+        evolution:
+            stark.evolution,
+
+        selfModel:
+            stark.selfModel,
+
+        realityModel:
+            stark.realityModel,
+
+        selfCausalModel:
+            stark.selfCausalModel,
+
+        internalEcology:
+            stark.internalEcology,
+
+        nicheConstruction:
+            stark.nicheConstruction,
+
+        failureGenome:
+            stark.failureGenome,
+
+        architecturalGenealogy:
+            stark.architecturalGenealogy,
+
+        meta:
+            stark.meta,
+
+        aegis:
+            stark.aegis,
+
+        timestamp:
+            Date.now()
+
+    };
+
+}
+
+    /* =====================================================
+   FIREBASE
+===================================================== */
+
+async function saveState(showLog = true) {
+
+    if (
+        !database
+    ) {
+
+        if (showLog) {
+
+            logEvent(
+                "Firebase indisponível; estado permanece local."
+            );
+
+        }
+
+        return;
+
+    }
+
+    try {
+
+        const snapshot =
+            createSnapshot();
+
+        await set(
+
+            ref(
+                database,
+                "evolua/stark/state"
+            ),
+
+            snapshot
+
+        );
+
+        if (showLog) {
+
+            logEvent(
+                "Estado salvo no Firebase."
+            );
+
+        }
+
+    }
+
+    catch (erro) {
+
+        console.warn(
+            "Falha ao salvar:",
+            erro
+        );
+
+        if (showLog) {
+
+            logEvent(
+                "Não foi possível salvar no Firebase."
+            );
+
+        }
+
+    }
+
+}
+
+    /* =====================================================
+   INTERFACE
+===================================================== */
+
+function render() {
+
+    document.getElementById(
+        "cycle"
+    ).textContent =
+        stark.state.cycle;
+
+
+    document.getElementById(
+        "organismStatus"
+    ).textContent =
+        stark.aegis.containment
+            ? "CONTIDO"
+            : "ATIVO";
+
+
+    document.getElementById(
+        "energy"
+    ).textContent =
+        Math.round(
+            stark.state.energy
+        );
+
+
+    document.getElementById(
+        "health"
+    ).textContent =
+        Math.round(
+            stark.state.health
+        );
+
+
+    document.getElementById(
+        "curiosity"
+    ).textContent =
+        Math.round(
+            stark.state.curiosity
+        );
+
+
+    document.getElementById(
+        "learning"
+    ).textContent =
+        Math.round(
+            stark.state.learning
+        );
+
+
+    document.getElementById(
+        "threat"
+    ).textContent =
+        Math.round(
+            stark.state.threat
+        );
+
+
+    document.getElementById(
+        "evolutionDebt"
+    ).textContent =
+        stark.state.evolutionDebt
+            .toFixed(1);
+
+
+    document.getElementById(
+        "perception"
+    ).textContent =
+        stark.perception.environment
+            ? "ATIVA"
+            : "0";
+
+
+    document.getElementById(
+        "attention"
+    ).textContent =
+        Math.round(
+            stark.cognition.attention
+        );
+
+
+    document.getElementById(
+        "prediction"
+    ).textContent =
+        Math.round(
+            stark.cognition.prediction
+        );
+
+
+    document.getElementById(
+        "reasoning"
+    ).textContent =
+        Math.round(
+            stark.cognition.reasoning
+        );
+
+
+    document.getElementById(
+        "defense"
+    ).textContent =
+        Math.round(
+            stark.state.defense
+        );
+
+
+    document.getElementById(
+        "homeostasis"
+    ).textContent =
+        Math.round(
+            stark.state.homeostasis
+        );
+
+
+    document.getElementById(
+        "worldState"
+    ).textContent =
+        "ATIVO";
+
+
+    document.getElementById(
+        "entities"
+    ).textContent =
+        stark.realityModel.entities.length;
+
+
+    document.getElementById(
+        "events"
+    ).textContent =
+        stark.realityModel.events.length;
+
+
+    document.getElementById(
+        "memories"
+    ).textContent =
+
+        stark.memory.shortTerm.length +
+
+        stark.memory.longTerm.length +
+
+        stark.memory.episodic.length;
+
+}
+
+    /* =====================================================
+   INSPEÇÃO
+===================================================== */
+
+function inspect() {
+
+    console.log(
+        "=============================="
+    );
+
+    console.log(
+        "S.T.A.R.K. — ESTADO COMPLETO"
+    );
+
+    console.log(
+        "=============================="
+    );
+
+    console.log(
+        stark
+    );
+
+    console.log(
+        "SICA:",
+        SICA
+    );
+
+    console.log(
+        "Organismo externo:",
+        organismo
+    );
+
+    console.log(
+        "Universo:",
+        universo
+    );
+
+    console.log(
+        "Mundo:",
+        mundo
+    );
+
+    console.log(
+        "Memória:",
+        memoria
+    );
+
+    console.log(
+        "Simulação:",
+        simulacao
+    );
+
+    console.log(
+        "Constituição:",
+        constituicao
+    );
+
+    alert(
+        "🔍 Estado completo enviado ao Console.\n\n" +
+        "Abra as ferramentas do navegador para visualizar."
+    );
+
+    }
+
+    /* =====================================================
+   RESET
+===================================================== */
+
+function reset() {
+
+    const confirmation =
+        confirm(
+            "Reiniciar a simulação?"
+        );
+
+    if (!confirmation) {
+
+        return;
+
+    }
+
+    location.reload();
+
+}
+
+    /* =====================================================
+   EXPOR SISTEMA
+===================================================== */
 
 window.dadosSistema = {
-  get organismo() { return organismo; },
-  get mundo() { return mundo; },
-  get constituicao() { return constituicao; }
+
+    organismo,
+
+    universo,
+
+    mundo,
+
+    memoria,
+
+    simulacao,
+
+    constituicao,
+
+    stark,
+
+    SICA,
+
+    executeCycle,
+
+    saveState,
+
+    createSnapshot
+
 };
-    
-</script>
+
+    /* =====================================================
+   BOTÕES
+===================================================== */
+
+document.getElementById(
+    "startButton"
+).addEventListener(
+    "click",
+    async () => {
+
+        logEvent(
+            "🚀 S.T.A.R.K. iniciado."
+        );
+
+        render();
+
+        await executeCycle();
+
+    }
+);
+
+
+document.getElementById(
+    "cycleButton"
+).addEventListener(
+    "click",
+    executeCycle
+);
+
+
+document.getElementById(
+    "tenCyclesButton"
+).addEventListener(
+    "click",
+    async () => {
+
+        for (
+            let i = 0;
+            i < 10;
+            i++
+        ) {
+
+            await executeCycle();
+
+        }
+
+    }
+);
+
+
+document.getElementById(
+    "saveButton"
+).addEventListener(
+    "click",
+    () => saveState(true)
+);
+
+
+document.getElementById(
+    "inspectButton"
+).addEventListener(
+    "click",
+    inspect
+);
+
+
+document.getElementById(
+    "resetButton"
+).addEventListener(
+    "click",
+    reset
+);
+
+    /* =====================================================
+   INICIALIZAÇÃO
+===================================================== */
+
+render();
+
+logEvent(
+    "🌌 EVOLUA carregado."
+);
+
+logEvent(
+    "🧬 S.T.A.R.K. aguardando."
+);
+
+logEvent(
+    "🧠 SICA inicializada."
+);
+
+logEvent(
+    "📜 Constituição carregada."
+);
+
+logEvent(
+    "🛡️ AEGIS inicializado."
+);
+
+logEvent(
+    "🧪 World Lab disponível."
+);
+
+logEvent(
+    "🌱 Evolution Genome inicializado."
+);
+
+logEvent(
+    "✅ Sistema pronto."
+);
+
+    </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
