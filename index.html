@@ -111,7 +111,24 @@
     </div>
 
     <script>
-        function começar() {
+        <script>
+let sistemaCarregado = null;
+
+function começar() {
+  if (!sistemaCarregado) {
+    alert("⏳ Sistema ainda carregando... Tenta de novo em instantes!");
+    return;
+  }
+  const { organismo, mundo, constituicao } = sistemaCarregado;
+  alert(
+    "🚀 SISTEMA EVOLUA ATIVADO!\n\n" +
+    organismo.getStatus() + "\n" +
+    mundo.getEstado() + "\n\n" +
+    "Confira o Console para ver todos os detalhes!"
+  );
+}
+</script>
+    
             alert("Bem-vindo ao Evolua! 🚀");
         }
     </script>
@@ -156,8 +173,9 @@
 
   simulacao.executar(5);
   console.log(organismo.getStatus());
-</script>
+</script> // ... todo o código que já está lá ...
 
-                          
+// Torna o sistema acessível para o botão
+sistemaCarregado = { organismo, mundo, constituicao };
 </body>
 </html>
