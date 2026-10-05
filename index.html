@@ -2935,6 +2935,20 @@ logEvent(
 );
 
     </script>
+<script type="module">
+    import { StarkCore } from "./stark-core.js";
 
+    const sistema = window.dadosSistema || {};
+
+    const stark = new StarkCore(sistema);
+
+    window.STARK = stark;
+
+    window.dadosSistema = {
+        ...sistema,
+        stark,
+        sica: stark.sica
+    };
+</script>
 </body>
 </html>
