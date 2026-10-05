@@ -111,7 +111,7 @@ function começar() {
   setTimeout(function() {
     const sys = window.dadosSistema;
     if (!sys) {
-      alert("🔄 Espera 1 segundo e aperta de novo!");
+      alert("🔄 Ainda carregando... Espera 2 segundos e tenta!");
       return;
     }
     alert(
@@ -120,6 +120,9 @@ function começar() {
       sys.mundo.getEstado() + "\n\n" +
       "📜 Princípios:\n" + sys.constituicao.getPrincipios().join("\n")
     );
+  }, 1500);
+}
+            
   }, 800);
 }
             
@@ -177,7 +180,10 @@ function começar() {
   console.log(organismo.getStatus()); simulacao.executar(5);
 console.log(organismo.getStatus());
 
-window.dadosSistema = { organismo, mundo, constituicao };
+window.dadosSistema = { 
+  organismo: organismo, 
+  mundo: mundo, 
+  constituicao: constituicao};
 </script>
 </body>
 </html>
