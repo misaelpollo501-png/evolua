@@ -134,24 +134,30 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 </script> 
-  export class SimulationEngine {
-  constructor(mundo, organismo) {
-    this.mundo = mundo;
-    this.organismo = organismo;
-    this.rodando = false;
-    this.ciclos = 0;
-  }
+<script type="module">
+  import { EvoluaOrganism } from "./organismo.js";
+  import { EvoluaUniverse } from "./universo.js";
+  import { EvoluaWorld } from "./mundo.js";
+  import { MemorySystem } from "./memory.js";
+  import { SimulationEngine } from "./simulacao.js";
+  import { ConstitutionEngine } from "./constituicao.js";
 
-  executar(ciclos = 1) {
-    this.rodando = true;
-    for (let i = 0; i < ciclos; i++) {
-      this.ciclos++;
-      this.organismo.evoluir(Math.floor(10 * this.mundo.condicoes.crescimento));
-    }
-    this.rodando = false;
-    return `✅ ${ciclos} ciclo(s) executado(s)!`;
-  }
-}
+  const organismo = new EvoluaOrganism("Evolua");
+  const universo = new EvoluaUniverse();
+  const mundo = new EvoluaWorld();
+  const memoria = new MemorySystem();
+  const simulacao = new SimulationEngine(mundo, organismo);
+  const constituicao = new ConstitutionEngine();
+
+  console.log("🚀 SISTEMA EVOLUA INICIADO!");
+  console.log(organismo.getStatus());
+  console.log(mundo.getEstado());
+  console.log("📜 Princípios:", constituicao.getPrincipios());
+
+  simulacao.executar(5);
+  console.log(organismo.getStatus());
+</script>
+
                           
 </body>
 </html>
