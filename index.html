@@ -103,30 +103,47 @@
             </p>
 
             <button onclick="começar()">
-                Começar
+                
             </button>
 
-        </div>
+        </div> <script>
+function começar() {
+  const sys = window.dadosSistema;
+  if (!sys) {
+    alert("🔄 Recarrega e tenta de novo!");
+    return;
+  }
+  alert(
+    "🚀 SISTEMA EVOLUA INICIADO!\n\n" +
+    sys.organismo.getStatus() + "\n" +
+    sys.mundo.getEstado() + "\n\n" +
+    "📜 Princípios:\n" + sys.constituicao.getPrincipios().join("\n")
+  );
+}
+        </script>
+        
 
     </div>
 
-    <script>
-        <script>
-let sistemaCarregado = null;
+  <script>
+let dadosSistema = null;
 
 function começar() {
-  if (!sistemaCarregado) {
-    alert("⏳ Sistema ainda carregando... Tenta de novo em instantes!");
+  if (!dadosSistema) {
+    alert("🔄 Carregando... recarrega a página e tenta de novo!");
     return;
   }
-  const { organismo, mundo, constituicao } = sistemaCarregado;
+  const { organismo, mundo, constituicao } = dadosSistema;
   alert(
-    "🚀 SISTEMA EVOLUA ATIVADO!\n\n" +
+    "🚀 SISTEMA EVOLUA INICIADO!\n\n" +
     organismo.getStatus() + "\n" +
     mundo.getEstado() + "\n\n" +
-    "Confira o Console para ver todos os detalhes!"
+    "📜 Princípios:\n" + constituicao.getPrincipios().join("\n")
   );
 }
+  </script>
+    
+  
 </script>
     
             alert("Bem-vindo ao Evolua! 🚀");
@@ -171,11 +188,11 @@ function começar() {
   console.log(mundo.getEstado());
   console.log("📜 Princípios:", constituicao.getPrincipios());
 
-  simulacao.executar(5);
-  console.log(organismo.getStatus());
-</script> // ... todo o código que já está lá ...
+  simulacao.executar(5); 
+  console.log(organismo.getStatus()); simulacao.executar(5);
+console.log(organismo.getStatus());
 
-// Torna o sistema acessível para o botão
-sistemaCarregado = { organismo, mundo, constituicao };
+window.dadosSistema = { organismo, mundo, constituicao };
+</script>
 </body>
 </html>
