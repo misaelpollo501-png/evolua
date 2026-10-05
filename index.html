@@ -108,18 +108,21 @@
 
         </div> <script>
 function começar() {
-  const sys = window.dadosSistema;
-  if (!sys) {
-    alert("🔄 Recarrega e tenta de novo!");
-    return;
-  }
-  alert(
-    "🚀 SISTEMA EVOLUA INICIADO!\n\n" +
-    sys.organismo.getStatus() + "\n" +
-    sys.mundo.getEstado() + "\n\n" +
-    "📜 Princípios:\n" + sys.constituicao.getPrincipios().join("\n")
-  );
+  setTimeout(function() {
+    const sys = window.dadosSistema;
+    if (!sys) {
+      alert("🔄 Espera 1 segundo e aperta de novo!");
+      return;
+    }
+    alert(
+      "🚀 SISTEMA EVOLUA INICIADO!\n\n" +
+      sys.organismo.getStatus() + "\n" +
+      sys.mundo.getEstado() + "\n\n" +
+      "📜 Princípios:\n" + sys.constituicao.getPrincipios().join("\n")
+    );
+  }, 800);
 }
+            
         </script>
         
 
@@ -178,6 +181,12 @@ window.dadosSistema = { organismo, mundo, constituicao };
 </script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
