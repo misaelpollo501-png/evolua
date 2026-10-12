@@ -2,14 +2,13 @@ import { PerceptionSystem }
     from "./percepcao.js";
 
 import { AttentionSystem }
-    from "./atencao.js";
+    from "./atenção.js";
 
 import { PredictionSystem }
     from "./predicao.js";
 
 import { ReasoningSystem }
-    from "./raciocinio.js";
-
+    from "./raciocínio.js";
 
 export class SICA {
 
